@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from "mobx-react";
-import registerServiceWorker from './registerServiceWorker';
 
 import portfolioStore from './stores/modules/portfolio';
 import stocksStore from './stores/modules/stocks';
@@ -14,4 +13,3 @@ ReactDOM.render(
 		<App />
 	</Provider>
 	, document.getElementById('app'));
-registerServiceWorker();

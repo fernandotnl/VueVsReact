@@ -37,12 +37,7 @@ var propsParser = require('properties-parser');
 var webpack = require('webpack');
 var path = require('path');
 
-module.exports = function webpackConfig(locale) {
-
-  var messagePath = path.resolve('i18n', (locale + '.properties'));
-  var messages = propsParser.read(messagePath);
-
-  locale = locale.substr(0, locale.indexOf('-'));
+module.exports = function webpackConfig() {
 
   return {
 
@@ -83,24 +78,14 @@ module.exports = function webpackConfig(locale) {
 
     plugins: [
       new ExtractTextPlugin('style.css'),
-      new webpack.NoErrorsPlugin(),
-      new webpack.DefinePlugin({
-        __I18N__: JSON.stringify({
-          locale,
-          messages,
-        }),
-        'process.env': {
-          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        },
-      }),
+      new webpack.NoErrorsPlugin()
     ],
 
     // Array of file extensions used to resolve modules.
     resolve: {
       extensions: ['', '.js', '.jsx', '.css', '.scss'],
       alias: {
-        components: path.join(__dirname, 'src/components'),
-        'locale-data': 'react-intl/locale-data/' + locale,
+        components: path.join(__dirname, 'src/components')
       },
     },
 
