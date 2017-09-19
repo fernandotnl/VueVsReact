@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Stock from './Stock';
 import {inject, observer} from 'mobx-react';
 import { computed } from 'mobx';
+import Stock from './Stock';
 
 @inject("stores") @observer
 class Stocks extends Component {

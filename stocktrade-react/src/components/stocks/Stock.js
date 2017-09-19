@@ -3,6 +3,8 @@ import {computed, action, observable} from 'mobx';
 import {observer,inject} from "mobx-react";
 import stocksStore from "../../stores/modules/stocks";
 
+import "./Stock.css";
+
 @inject("stores") @observer
 class Stock extends Component {
 
@@ -42,7 +44,7 @@ class Stock extends Component {
     }
     render() {
         const { stock } = this.props;
-        const quantityClass = "form-control" + (this.insufficientFunds? "danger": "");
+        const quantityClass = "form-control " + (this.insufficientFunds? "danger": "");
         const buttonText = this.insufficientFunds? 'Insufficient Funds' : 'Buy';
         return (
           <div className="col-sm-6 col-md-4">
@@ -56,7 +58,7 @@ class Stock extends Component {
                 <div className="panel-body">
                     <div className="pull-left">
                         <input
-                                type="text"
+                                type="number"
                                 className={quantityClass}
                                 placeholder="Quantity"
                                 onChange={this.changeQuantity}

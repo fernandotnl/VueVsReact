@@ -29,11 +29,11 @@
     }
 
     .slide-enter-active {
-        animation: slide-in 500ms ease-out forwards;
+        animation: slide-in 500ms ease-in forwards;
     }
 
     .slide-leave-active {
-        animation: slide-out 500ms ease-out forwards;
+        animation: slide-out 500ms ease-in-out forwards;
     }
 
     @keyframes slide-in {

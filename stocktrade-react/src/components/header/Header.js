@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink, BrowserRouter } from 'react-router-dom'
+import NumberFormat from 'react-number-format';
 import {observer, inject} from "mobx-react";
 import {observable, computed, action} from "mobx";
-import NumberFormat from 'react-number-format';
-
 import axios from '../../util/axios';
 
 @inject("stores") @observer
@@ -17,21 +16,16 @@ class Header extends Component {
   constructor(props) {
       super(props);
       this.changeDropdownOpen = ::this.changeDropdownOpen;
-      this.clickLink = ::this.clickLink;
       this.endDay = ::this.endDay;
       this.saveData = ::this.saveData;
       this.loadData = ::this.loadData;
       this.resetData = ::this.resetData;
   }
-  clickLink(event){
-    event.preventDefault();
-  }
   changeDropdownOpen(){
     this.setIsDropdownOpen(!this.isDropdownOpen);
   }
   endDay() {
-    console.log(this.props);
-      this.props.stores.randomizeStocks();
+    this.props.stores.randomizeStocks();
   }
   saveData(){
     const data = {
@@ -42,19 +36,13 @@ class Header extends Component {
     axios.put('data.json', data);
   }
   loadData(){
-    this.props.stores.loadData(this.props);
+    this.props.stores.loadData();
   }
   resetData(){
     this.props.stores.resetData();
   }
   @action setIsDropdownOpen = (isDropdownOpen) => {
     this.isDropdownOpen = isDropdownOpen;
-  }
-  @computed get stocks(){
-    return this.props.stores.stocksStore.stocks;
-  }
-  @computed get stockPortfolio(){
-    return this.props.stores.portfolioStore.stocks;
   }
   @computed get funds(){
     return this.props.stores.portfolioStore.funds;
@@ -71,7 +59,6 @@ class Header extends Component {
   @computed get isStocksActive(){
     return this.props.stores.currentView == "Stocks"? "router-link-exact-active active": "";
   }
-  
   render() {
     return (
       <nav className="navbar navbar-default">

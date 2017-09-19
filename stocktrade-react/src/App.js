@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import {observer, inject} from "mobx-react";
-
+import {computed} from "mobx";
 import AppHeader from "./components/header/Header";
 import Home from "./components/Home";
 import Stocks from "./components/stocks/Stocks";
@@ -15,6 +15,9 @@ class App extends Component {
   constructor(props){
     super(props);
   }
+  @computed get key(){
+    return this.props.stores.currentView;
+  }
   render() {
     return (
       <BrowserRouter>
@@ -24,17 +27,13 @@ class App extends Component {
             <div className="col-xs-12">
               <CSSTransitionGroup
                 transitionName="slide"
-                transitionAppear={true}
-                transitionAppearTimeout={600}
-                transitionEnterTimeout={600}
-                transitionLeaveTimeout={200}>
-                  <div>
-                    <Switch>
-                      <Route exact path="/" component={Home}/>
-                      <Route path="/portfolio" component={Portfolio}/>
-                      <Route path="/stocks" component={Stocks}/>
-                    </Switch>
-                  </div>
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={500}>
+                <Switch key={this.key} >
+                      <Route key="Home" exact path="/" component={Home}/>
+                      <Route key="Portfolio" path="/portfolio" component={Portfolio}/>
+                      <Route key="Stocks" path="/stocks" component={Stocks}/>
+                </Switch>
               </CSSTransitionGroup>
             </div>
           </div>

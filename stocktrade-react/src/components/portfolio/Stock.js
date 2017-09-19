@@ -3,10 +3,13 @@ import {observer, inject} from "mobx-react";
 import {observable, computed, action} from "mobx"; 
 import portfolioStore from "../../stores/modules/portfolio";
 
+import "./Stock.css";
+
 @inject("stores") @observer
 class Stock extends Component {
     
     @observable quantity = 0;
+
     constructor(props) {
         super(props);
         this.sellStock = ::this.sellStock;
@@ -14,19 +17,22 @@ class Stock extends Component {
     }
     
     @computed get insufficientQuantity(){
-        console.log(this.quantity);
-        console.log(this.props);
-        console.log(this.props.stock);
-        console.log(this.props.stock.quantity);
         return this.quantity > this.props.stock.quantity;
     }
     @computed get buttonDisabled(){
-        return this.insufficientFunds || this.quantity <=0;
+        return this.insufficientQuantity || this.quantity <=0;
+    }
+    @computed get quantityClass(){
+        return "form-control " + (this.insufficientQuantity? "danger": "");
+    }
+    @computed get buttonText(){
+        return this.insufficientQuantity? 'Not enough' : 'Sell';
     }
     @action setQuantity = (quantity) => {
         this.quantity = quantity;
     }
     changeQuantity(event) {
+        console.log(event);
         this.setQuantity(event.target.value);
     }
     sellStock(){
@@ -40,8 +46,6 @@ class Stock extends Component {
     }
     render() {
         const {stock} = this.props;
-        const quantityClass = "form-control" + (this.insufficientQuantity? "danger": "");
-        const buttonText = this.insufficientQuantity? 'Not enough' : 'Sell';
         return (
           <div className="col-sm-6 col-md-4">
             <div className="panel panel-info">
@@ -54,8 +58,8 @@ class Stock extends Component {
                 <div className="panel-body">
                     <div className="pull-left">
                         <input
-                                type="text"
-                                className={quantityClass}
+                                type="number" pattern="[0-9]*" inputMode="numeric"
+                                className={this.quantityClass}
                                 placeholder="Quantity"
                                 onChange={this.changeQuantity}
                                 value={this.quantity}
@@ -67,7 +71,7 @@ class Stock extends Component {
                                 onClick={this.sellStock}
                                 disabled={this.buttonDisabled}
                         >
-                        {buttonText}
+                        {this.buttonText}
                         </button>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Stock from './Stock';
 import {inject, observer} from 'mobx-react';
 import { computed } from 'mobx';
+import Stock from './Stock';
 
 @inject("stores") @observer
 class Portfolio extends Component {
@@ -9,11 +9,21 @@ class Portfolio extends Component {
   componentWillMount(){
     this.props.stores.setCurrentView("Portfolio");
   }
+
   @computed get stocks(){
     const stocks = this.props.stores.stocksStore.stocks;
-    console.log(stocks);
-    return this.props.stores.portfolioStore.stockPortfolio(stocks);
+    const stocksPortfolio = this.props.stores.portfolioStore.stocks;
+    return stocksPortfolio.map(stock => {
+          const record = stocks.find(element => element.id == stock.id);
+          return {
+              id: stock.id,
+              quantity: stock.quantity,
+              name: record.name,
+              price: record.price
+          }
+    });
   }
+
   render() {
     var rows = [];
     if(this.stocks){

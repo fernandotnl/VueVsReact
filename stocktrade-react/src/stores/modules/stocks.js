@@ -4,13 +4,11 @@ import {observable, computed, action} from 'mobx';
 
 class StocksStore {
 
-    @observable stocks;
+    @observable stocks = [];
 
     constructor(rootStore){
-        this.stocks = [];
         this.rootStore = rootStore;
     }
-
     @action initStocks = () => {
         this.stocks = dataStocks;
     }
