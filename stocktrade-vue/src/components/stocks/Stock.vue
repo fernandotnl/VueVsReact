@@ -30,12 +30,6 @@
     </div>
 </template>
 
-<style scoped>
-    .danger {
-        border: 1px solid red;
-    }
-</style>
-
 <script>
     export default {
         props: ['stock'],
@@ -65,3 +59,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .danger {
+        border: 1px solid red;
+    }
+</style>
