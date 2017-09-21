@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from "mobx-react";
-
-import portfolioStore from './stores/modules/portfolio';
-import stocksStore from './stores/modules/stocks';
-import mainStore from './stores/store';
+import {Provider} from 'mobx-react';
 
 import App from './App';
+import mainStore from './stores/store';
 
 ReactDOM.render(
 	<Provider stores={mainStore}>

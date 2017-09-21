@@ -48,7 +48,7 @@ class Header extends Component {
     return this.props.stores.portfolioStore.funds;
   }
   @computed get classDropDown(){
-    return "dropdown "+ (this.isDropdownOpen? "open": "");
+    return this.isDropdownOpen? "dropdown open": "dropdown";
   }
   @computed get isHomeActive(){
     return this.props.stores.currentView == "Home" ? "navbar-brand router-link-exact-active router-link-active": "navbar-brand router-link-active";

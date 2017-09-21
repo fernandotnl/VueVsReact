@@ -12,7 +12,7 @@
                 </ul>
                 <strong class="navbar-text navbar-right">Funds: {{ funds | currency }}</strong>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" @click="endDay">End Day</a></li>
+                    <li><a href="#" @click="randomizeStocks">End Day</a></li>
                     <li
                             class="dropdown"
                             :class="{open: isDropdownOpen}"
@@ -53,12 +53,9 @@
         methods: {
             ...mapActions({
                 randomizeStocks: 'randomizeStocks',
-                fetchData: 'loadData',
+                loadData: 'loadData',
                 resetData: 'resetData'
             }),
-            endDay() {
-                this.randomizeStocks();
-            },
             saveData() {
                 const data = {
                     funds: this.$store.getters.funds,
@@ -66,12 +63,6 @@
                     stocks: this.$store.getters.stocks
                 };
                 this.$http.put('data.json', data);
-            },
-            loadData() {
-                this.fetchData();
-            },
-            reset(){
-                this.resetData();
             }
         }
     }

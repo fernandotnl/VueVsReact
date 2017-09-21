@@ -1,0 +1,159 @@
+<html>
+ 	<head>
+        <meta charset="utf-8">
+        <title>
+        	Vue Vs React Comparison - UNDER CONSTRUCTION
+        </title>
+    </head>
+	<body>
+		<h1>Vue Vs React Comparison - UNDER CONSTRUCTION</h1>
+		<section>
+			<h2>Introduction</h2>
+			<p>
+				ReactJS and VueJS are two of the most populars Javascript frameworks/libraries at the moment. Although the have a lot of things and common, it's very easy to notice considerable differences between them.
+			</p>
+			<p>
+				In this article I'll compare these two frameworks/libraries by showing both implementation of the same application. As is not my intention to worry about the building tools and any aditional tools necessary to make an application using any of these frameworks/libraries, I won't show anything regarding this on this article, but you can check the full implementation in this link 
+				<a href="https://github.com/fernandotnl/VueVsReact"></a>. I would like to mention that I found the Vue implementation in the <a href="https://www.udemy.com/vuejs-2-the-complete-guide/">VueJS 2 - The Complete Guide></a> and I did some changes to make it easier for comparison. After that, I basically converted everything into React to be able to make this article comparing them.
+		 	</p>
+		</section>
+		<section>
+			<h2>Beginning comparison</h2>
+		 	<p>
+		 		To begin the comparison, I will show the HTML file that is the first starting point of both application and then show the Javascript files that are the other starting point of these apps.
+		 	</p>
+		 	<p>
+		 		<pre>
+		 			&lt;!DOCTYPE html&gt;
+					&lt;html lang="en"&gt;
+						&lt;head&gt;
+							&lt;meta charset="utf-8"&gt;
+						    &lt;title&gt;Stock Trade - ReactJS&lt;/title&gt;
+							&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"&gt;
+						&lt;/head&gt;
+						&lt;body&gt;
+						    &lt;div id="app"&gt;&lt;/div&gt;
+						    &lt;script src="/static/bundle.js"&gt;&lt;/script&gt;
+						&lt;/body&gt;
+					&lt;/html&gt;
+		 		</pre>
+		 		<h5>index.html is this React application HTML starting point.</h5>
+		 		<pre>
+		 			&lt;!DOCTYPE html&gt;
+					&lt;html lang="en"&gt;
+						&lt;head&gt;
+							&lt;meta charset="utf-8"&gt;
+						    &lt;title&gt;Stock Trade - VueJS&lt;/title&gt;
+							&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"&gt;
+						&lt;/head&gt;
+				    &lt;body&gt;
+						    &lt;div id="app"&gt;&lt;/div&gt;
+				        &lt;script src="/dist/build.js"&gt;&lt;/script&gt;
+						&lt;/body&gt;
+					&lt;/html&gt;
+		 		</pre>
+		 		<h5>index.html is this VueJS application HTML starting point.</h5>
+		 		Is very clear that these files are basically the same and the actually could be the same for both.
+		 		The important thing to notice here is the div with id "app". This is the first element that both frameworks/libraries are going to manipulate.
+		 	</p>
+		 	<p> 
+		 		Keeping talking about the starting points of both applications, now I'm going to show the Javascript starting points and comment some differences between them.
+		 	</p>
+		 	<p>
+		 		<pre>
+		 			import React from 'react';
+					import ReactDOM from 'react-dom';
+					import {Provider} from 'mobx-react';
+
+					import App from './App';
+					import mainStore from './stores/store';
+
+					ReactDOM.render(
+						<Provider stores={mainStore}>
+							<App />
+						</Provider>
+						, document.getElementById('app'));
+		 		</pre>
+		 		<h5>index.js is this React application Javascript starting point</h5>
+		 		<pre>
+		 			import Vue from 'vue'
+					import VueRouter from 'vue-router';
+					import VueResource from 'vue-resource';
+
+					import App from './App.vue'
+					import { routes } from './routes';
+					import store from './store/store';
+
+					Vue.use(VueRouter);
+					Vue.use(VueResource);
+
+					Vue.http.options.root = 'https://stocktrade-ccd74.firebaseio.com/';
+
+					Vue.filter('currency', (value) => {
+					  return '$' + value.toLocaleString();
+					});
+
+					const router = new VueRouter({
+					  mode: 'history',
+					  routes
+					});
+
+					new Vue({
+					  el: '#app',
+					  router,
+					  store,
+					  render: h => h(App)
+					})
+
+		 		</pre>
+		 		<h5>main.js is this React application starting point</h5>
+
+		 		<p>
+		 			The first thing we can see is that both Javascript starting file being with importing the library being used.
+		 			Both files need this to work. An interesting point is that if you pay attention to main.js, you'll see that there's no reference of imported React library in any part of this code. However, if you remove it from this file, you'll see that nothing will be render when the application starts and there will be a message on the console saying that 'React is not defined'.
+		 		</p>
+		 		<p>
+		 			The second thing that is important to notice is that both files define a component (App) that will the first thing rendered in the application. 
+		 			React uses ReactDOM to render this first component while Vue only define a render function on one of the fields being passed to the Vue instance.
+		 			Also, as mentioned before, both define that the first element being managed by them is the div app shown in the index.html.
+		 		</p>
+		 		<p>
+		 			Besides this two observations, everything else in these files is optional and will depend on the type of app being developed.
+		 		</p>
+		 		<p>
+		 			One of these optional configuration that is worth mentioning is the state management libraries used in both application.
+		 			In these example, I chose to use MobX as React's state management tool. If you are familiar with React ecosystem you might have heard that Redux is the tool for it, but I've worked with React + Redux for sometime and I've always thought that it was hard to track where were the actions methods that triggered my reducer and which reducers where being triggered by some action methods. I became aware of MobX no longer than 2 weeks and I already find it clearer that Redux.
+		 			In VueJS, we have the Vuex as the state management tool which is also clearer than Redux, but I think is not as clear as Mobx.
+		 			One important thing to mentioned regarding these tools is that while Vuex is maintained by Vue.org, Mobx is a 3rd party tool. You'll see that this is a very common difference between React and Vue: React usually rely on 3rd party tools to work and Vue relies mostly on tools provided by its own organization.
+		 			Besides this observation, I won't compare Vuex and Mobx in this section, because I first would like to mentioned the different tools used by these frameworks/libraries and then actually compare them in the next sections.
+		 		</p>
+		 		<p>
+		 			Another optional tool used in both application is a tool allow us in doing HTTP Requests. In these aplications I chose to use Axios for React and VueResource for VueJS. Once again, VueResource is maintained by Vue.org and Axios by a 3rd party.
+		 		</p>
+		 		<p>
+		 			In this application, I needed a tool to be able to navigate between different urls while it keep being a SPA. To accomplish this, on React side I used React Router and on Vue side, Vue Router. Despite the name, React Router is a 3rd party tool while Vue Router is maintained by Vue.org.
+		 		</p>
+		 		<p>
+		 			Lastly, these aplications have some css animations while transitioning between urls.
+		 			I chose to working with ReactCSSTransitionGroup on React side which is, as you can imagine, another 3rd party tool. On VueJS side we don't need a tool because it is already provided by its core library.
+		 		</p>
+		 	</p>
+		</section>
+		<section>
+			<h2>Components</h2>
+		</section>
+		<section>
+			<h2>State Management</h2>
+		</section>
+		<section>
+			<h2>HTTP Request</h2>
+		</section>
+		<section>
+			<h2>Routing</h2>
+		</section>
+		<section>
+			<h2>Transaction</h2>
+		</section>
+		
+	</body>
+</html>
