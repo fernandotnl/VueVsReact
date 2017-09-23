@@ -2,11 +2,11 @@ body {
     padding: 30px;
 }
 
-.slide-appear-active {
+.slide-enter-active {
     animation: slide-in 500ms ease-in forwards;
 }
 
-.slide-leave-active {
+.slide-leave-active{
     animation: slide-out 500ms ease-in-out forwards;
 }
 

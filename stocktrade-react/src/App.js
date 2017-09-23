@@ -27,12 +27,13 @@ class App extends Component {
             <div className="col-xs-12">
               <CSSTransitionGroup
                 transitionName="slide"
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={500}>
+                transitionEnterTimeout={1000}
+                transitionLeaveTimeout={0}
+                >
                 <Switch key={this.key} >
-                      <Route key="Home" exact path="/" component={Home}/>
-                      <Route key="Portfolio" path="/portfolio" component={Portfolio}/>
-                      <Route key="Stocks" path="/stocks" component={Stocks}/>
+                      <Route exact path="/" component={Home}/>
+                      <Route path="/portfolio" component={Portfolio}/>
+                      <Route path="/stocks" component={Stocks}/>
                 </Switch>
               </CSSTransitionGroup>
             </div>

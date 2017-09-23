@@ -7,9 +7,9 @@ import portfolio from './modules/portfolio';
 const actions = {
 	loadData: ({commit}) => {
 	    Vue.http.get('data.json')
-	        .then(response => response.json())
-	        .then(data => {
-	            if (data) {
+	        .then(response => {
+	        	let data = response.body;
+	       	    if (data) {
 	                const stocks = data.stocks;
 	                const funds = data.funds;
 	                const stockPortfolio = data.stockPortfolio;
