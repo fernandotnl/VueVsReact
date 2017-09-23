@@ -2,28 +2,28 @@
  	<head>
         <meta charset="utf-8">
         <title>
-        	Vue Vs React Comparison - UNDER CONSTRUCTION
+        	Vue Vs React Comparison
         </title>
     </head>
 	<body>
-		<h1>Vue Vs React Comparison - UNDER CONSTRUCTION</h1>
+		<h1>Vue Vs React Comparison</h1>
 		<section>
 			<h2>Introduction</h2>
 			<p>
-				ReactJS and VueJS are two of the most populars Javascript frameworks/libraries at the moment. Although the have a lot of things and common, it's very easy to notice considerable differences between them.
+				<strong>ReactJS</strong> and <strong>VueJS</strong> are two of the most populars <i>Javascript</i> frameworks/libraries at the moment. Although they have a lot of things in common, it's very easy to notice considerable differences between them.
 			</p>
 			<p>
-				In this article I'll compare these two frameworks/libraries by showing both implementation of the same application. As is not my intention to worry about the building tools and any aditional tools necessary to make an application using any of these frameworks/libraries, I won't show anything regarding this on this article, but you can check the full implementation in this link: 
+				In this article I'll compare these two frameworks/libraries by showing both implementation of the same application. As is not my intention to worry about the building tools and any aditional tools necessary to make an application using any of these frameworks/libraries work, I won't show anything regarding this on this article, but you can check out the full implementations in this link: 
 				<a href="https://github.com/fernandotnl/VueVsReact">here</a>. 
 			</p>
 			<p>
-				I would like to mention that I found the Vue implementation in the <a href="https://www.udemy.com/vuejs-2-the-complete-guide/"/>VueJS 2 - The Complete Guide</a> and I did some changes to make it easier for comparison. After that, I basically converted everything into React to be able to make this article comparing them.
+				I would like to mention that I found the Vue implementation in the <a href="https://www.udemy.com/vuejs-2-the-complete-guide/"/>VueJS 2 - The Complete Guide</a> and I did some changes to make it easier for comparison. After that, I basically converted everything into React to be able to make this article comparing them. Also if you want to learn <i>VueJS</i>, I think that this guide would be an awesome first step.
 		 	</p>
 		</section>
 		<section>
 			<h2>Beginning comparison</h2>
 		 	<p>
-		 		To begin the comparison, I will show the HTML file that is the first starting point of both application and then show the Javascript files that are the other starting point of these apps.
+		 		To begin the comparison, I will show the <i>HTML</i> file that is the starting point of both applications and then show the <i>Javascript</i> files which make everything possible by filling the <i>HTML</i> content of the &lt;div&gt; <i>app</i> tag.
 		 	</p>
 		 	<p>
 		 		<pre>
@@ -60,11 +60,11 @@
 		 		<h5>index.html is this VueJS application HTML starting point.</h5>
 		 	</p>
 		 	<p>
-		 		Is very clear that these files are basically the same and the actually could be the same for both.
-		 		The important thing to notice here is the div with id "app". This is the first element that both frameworks/libraries are going to manipulate.
+		 		Is very clear that these files are basically the same and actually could be.
+		 		The important thing to notice here is the &lt;div&gt; with id <i>app</i>. This is the first element that both frameworks/libraries are going to manipulate.
 		 	</p>
 		 	<p> 
-		 		Keeping talking about the starting points of both applications, now I'm going to show the Javascript starting points and comment some differences between them.
+		 		Let's demonstrate how that manipulation happens by looking at the <i>JavaScript</i> side and then comment some differences between them.
 		 	</p>
 		 	<p>
 		 		<pre>
@@ -76,7 +76,7 @@ import App from './App';
 import mainStore from './stores/store';
 
 ReactDOM.render(
-	&lt;Provider stores={mainStore}>
+	&lt;Provider stores={mainStore}&gt;
 		&lt;App /&gt;
 	&lt;/Provider&gt;
 	, document.getElementById('app'));
@@ -118,39 +118,37 @@ new Vue({
 	 			<h5>main.js is this React application starting point</h5>
 	 		</p>
 		 	<p>
-	 			The first thing we can see is that both Javascript starting file being with importing the library being used.
-	 			Both files need this to work. An interesting point is that if you pay attention to main.js, you'll see that there's no reference of imported React library in any part of this code. However, if you remove it from this file, you'll see that nothing will be render when the application starts and there will be a message on the console saying that 'React is not defined'.
+	 			The first thing we can see is that both <i>Javascript</i> files begin with importing the library being used (<i>React</i> and <i>Vue</i>). Both files need this to work. An interesting point is that if you pay attention to <i>main.js</i>, you'll see that there's no reference of imported <i>React</i> library in any part of this code. However, if you remove it from this file, you'll see that nothing will be render when the application starts and there will be a message on the console saying that <i>'React is not defined'</i>.
 	 		</p>
 	 		<p>
-	 			The second thing that is important to notice is that both files define a component (App) that will the first thing rendered in the application. 
-	 			React uses ReactDOM to render this first component while Vue only define a render function on one of the fields being passed to the Vue instance.
-	 			Also, as mentioned before, both define that the first element being managed by them is the div app shown in the index.html.
+	 			The second thing to notice is that both files define a component (<i>App</i>) that will the first thing rendered in the application. <i>React</i> uses <i>ReactDOM</i> to render this first component while <i>Vue</i> only define a render function on one of the fields being passed to construct the <i>Vue</i> instance. Also, as mentioned before, both define that the first element being managed by them is the &lt;div&gt; <i>app</i> shown in the <i>index.html</i>.
 	 		</p>
 	 		<p>
-	 			Besides this two observations, everything else in these files is optional and will depend on the type of app being developed.
+	 			Besides these two observations, everything else in these files is optional and will depend on the type of app being developed.
 	 		</p>
 	 		<p>
-	 			One of these optional configuration that is worth mentioning is the state management libraries used in both application.
-	 			In these example, I chose to use MobX as React's state management tool. If you are familiar with React ecosystem you might have heard that Redux is the tool for it, but I've worked with React + Redux for sometime and I've always thought that it was hard to track where were the actions methods that triggered my reducer and which reducers where being triggered by some action methods. I became aware of MobX no longer than 2 weeks and I already find it clearer that Redux.
-	 			In VueJS, we have the Vuex as the state management tool which is also clearer than Redux, but I think is not as clear as Mobx.
-	 			One important thing to mentioned regarding these tools is that while Vuex is maintained by Vue.org, Mobx is a 3rd party tool. You'll see that this is a very common difference between React and Vue: React usually rely on 3rd party tools to work and Vue relies mostly on tools provided by its own organization.
-	 			Besides this observation, I won't compare Vuex and Mobx in this section, because I first would like to mentioned the different tools used by these frameworks/libraries and then actually compare them in the next sections.
+	 			One of these optional configuration worth mentioning is the state management libraries used. In this example, I chose to use MobX as React's state management tool. If you are familiar with React ecosystem you might have heard that <i>Redux</i> is the tool for it, but I've worked with <i>React</i> + <i>Redux</i> for sometime and I've always found it hard to track where were the actions methods triggering some reducer and which reducers where being triggered by some action methods. I became aware of <i>MobX</i> no longer than 2 weeks and I already find it clearer that <i>Redux</i>.
 	 		</p>
 	 		<p>
-	 			Another optional tool used in both application is a tool allow us in doing HTTP Requests. In these aplications I chose to use Axios for React and VueResource for VueJS. Once again, VueResource is maintained by Vue.org and Axios by a 3rd party.
+	 			In <i>VueJS</i>, we have the <i>Vuex</i> as the state management tool which is also clearer than <i>Redux</i> but not as clear as Mobx. One important thing to mentioned regarding these tools is that while <i>Vuex</i> is maintained by <a href="https://vuejs.org/">VueJS.org</a>, <i>Mobx</i> is a 3rd party tool. You'll see that this is a very common difference between <i>React</i> and <i>Vue</i>: <i>React</i> usually rely on 3rd party tools to function and <i>Vue</i> relies mostly on tools provided by its own organization.
+	 		<p>
+	 		</p>
+	 			Besides this observation, I won't compare <i>Vuex</i> and <i>Mobx</i> in this section, because I would like to mentioned the different tools used by these applications first and then actually compare tools in the next sections.
 	 		</p>
 	 		<p>
-	 			In this application, I needed a tool to be able to navigate between different urls while it keep being a SPA. To accomplish this, on React side I used React Router and on Vue side, Vue Router. Despite the name, React Router is a 3rd party tool while Vue Router is maintained by Vue.org.
+	 			Another thing to worry about this application is to have a <i>HTTP Client</i> to enable <i>HTTP Requests</i>. In these applications, I chose to use <i>Axios</i> for <i>React</i> and <i>VueResource</i> for <i>VueJS</i>. Once again, <i>VueResource</i> is maintained by <i>VueJS.org</i> and <i>Axios</i> by a 3rd party.
 	 		</p>
 	 		<p>
-	 			Lastly, these aplications have some css animations while transitioning between urls.
-	 			I chose to working with ReactCSSTransitionGroup on React side which is, as you can imagine, another 3rd party tool. On VueJS side we don't need a tool because it is already provided by its core library.
+	 			In this application, I also needed a tool to be able to navigate between different URLs but maintaining a SPA. To accomplish this, on <i>React</i> side I used <i>React Router</i> and on <i>Vue</i> side, <i>Vue Router</i>. Despite the name, <i>React Router</i> is a 3rd party tool while <i>Vue Router</i> is maintained by <i>VueJS.org</i>.
+	 		</p>
+	 		<p>
+	 			Lastly, these aplications have some <i>CSS</i> animations while transitioning between routes. I chose to working with <i>ReactCSSTransitionGroup</i> on <i>React</i> side which is, as you can imagine, another 3rd party tool and on <i>VueJS</i> side we don't need a tool because it is already provided by its core library.
 	 		</p>
 		</section>
 		<section>
 			<h2>State Management</h2>
 			<p>
-				To begin the State Management comparison, I will show the implementations.
+				To begin the State Management comparison, I will show the implementations:
 			</p>
 			<p>
 				<pre>
@@ -248,11 +246,15 @@ export default new Vuex.Store({
 				<h5>stores.js is Vue's main Store using Vuex</h5>
 			</p>
 		 	<p>
-				Looking at these files is pretty clear that both are composed by other two modules: Stocks and Portfolio but it's also clear that both handle its relationship a little different.
-				Mobx MainStore keeps two references objects that are used in its actions while Vuex main store dispatch actions and commit mutations provided by its modules (which is not totally clear for people that don't know how it works).
+				Looking at these files is pretty clear that both are composed by other two modules: <i>Stocks</i> and <i>Portfolio</i>. It's also clear that both handle its relationship a little different. <i>Mobx</i> <i>MainStore</i> keeps two references objects that are used in its actions while <i>Vuex</i> main store dispatches actions and commits mutations provided by its modules (which is not totally clear for people that don't know how it works).
+			</p>
+			<p>
 				In simple terms, committing mutations are tasks that change the state and doesn't allow asynchronous operations while dispatching actions are tasks that commit mutations and can have asynchronous operations.
-				Mobx doesn't have mutations, every state change should be done by actions.
-				It's  possible and recommended that you define "mobx.useStrict(true)" on the stores to make sure that only actions are able to change the state. I didn't because this was just a simple example.
+			</p>	
+				On the other hand, <i>Mobx</i> doesn't have mutations, every state change should be done by actions. It's  possible and recommended that you define <i>"mobx.useStrict(true)"</i> on the stores to make sure that only actions are able to change the state. I didn't because this was just a simple example.
+			</p>
+			<p>
+				Let's see the code and compare them.
 			</p>
 			<p>
 				<pre>
@@ -337,22 +339,22 @@ export default {
 				<h5>stocks.js is one of the Vuex stores used in the Vue app</h5>
 			</p>
 		 	<p>
-				In the Mobx stocks.js file there's basically nothing new but now I would like to point out something that was in the previous Mobx file and wasn't mentioned: the @observable field. This field is the state managed by this store. If you pay attention to the Vuex stocks.js file, you will see that it also have a state defined.
+				In <i>React</i>'s <i>stocks.js</i> file there's basically nothing new but now I would like to point out something that was in the previous file and wasn't mentioned: the <i>@observable</i> field. This field is the state managed by this store. If you pay attention to <i>Vuex</i> <i>stocks.js</i> file, you'll see that it also has a state defined.
 			</p>
 		 	<p>
-				Although it is only explicity on Mobx stocks.js, both states are observable objects. This means that we can define computed functions that will be listen to changes on its values and will be updated automaticlly, triggerring components to be re-render when it happens. This is one of the reasons that made me chose Mobx instead of Redux in the React application, Redux doesn't provide such thing.
+				Although it is only explicity on <i>React</i>'s <i>stocks.js</i>, both states are observable objects. This means that we can define computed functions that will be listen to changes on its values and will be updated automatically, triggerring components to be re-render when it happens. This is one of the reasons that made me chose <i>Mobx</i> instead of <i>Redux</i> in the <i>React</i> application, <i>Redux</i> doesn't provide such thing by default, you would need to use another 3rd party tool for that.
 			</p>
 		 	<p>
-				One more thing that we need to mention about this subject is that Vuex uses getters to implement the computed methods necessary to read state objects, if you try to access it directly you won't be able to. Mobx doesn't have that restriction, you can either define computed methods (I will show how to do it later) or access the state objects directly.
+				One more thing that we need to mention about this subject is that <i>Vuex</i> uses getters to implement computed methods to read state objects, if you try to access it directly you won't be able to. <i>Mobx</i> doesn't have that restriction, you can either define computed methods (I will show how to do it later) or access the state objects directly.
 			</p>
 		 	<p>
-				Moving to mutations, similarly to Redux, it requires you to define string unique values in the whole app to all mutations. You can understand why by looking at the main Vuex store and seeing that it commits one mutation from each module by their names.
+				Moving to mutations, similarly to <i>Redux</i>, it requires you to define string unique values in the whole app to all mutations. You can understand why by looking at the main <i>Vuex</i> store and seeing that it commits one mutation from each module by their names.
 			</p>
 		</section>
 		<section>
-			<h2>HTTP Request</h2>
+			<h2>HTTP Client</h2>
 			<p>
-				To show the difference between the way both applications perform HTTP Request, I will just pick up some parts of code from files that I've already shown here.
+				To show the difference between the way both applications perform <i>HTTP Request</i>, I will just pick up some parts of code from files that I've already shown here:
 				<pre>
 // some other imports
 import axios from '../util/axios';
@@ -418,15 +420,17 @@ const actions = {
 				<h5>VueResource HTTP request from stores.js in the Vue app</h5>
 			</p>
 		 	<p>
-				Both libraries work almost the same: they use Promises to perform HTTP Requests. Just be aware that they return objects with different fields and methods, you can see that by noticing that one calls response.data and the other calls response.body to get the data retrieved on the request.
+				Both libraries work almost the same: they use <i>Promises</i> to perform <i>HTTP Requests</i>. Just be aware that they return objects with different interfaces; you can see it by noticing that one calls <i>"response.data"</i> and the other calls <i>"response.body"</i> to get the data retrieved on the request.
 			</p>
 		</section>
 		<section>
 			<h2>Routing</h2>
 			<p>
-				In this section I will show how these apps handles routing.
+				In this section I will show how these apps handle routing. In the next files, youll see that one requires more configuration steps than the other.
+			</p>
+			<p>
 				<pre>
-			import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from "./components/Home";
 import Stocks from "./components/stocks/Stocks";
@@ -488,13 +492,13 @@ new Vue({
 				<h5>routes.js, App.vue and main.js are Vue's application way of defining routes</h5>
 			</p>
 		 	<p>
-				React and Vue are a bit different in the way they configure their routing. React only needs to define a router tag (BrowserRouter, in this case) and all its routes defined in different Route tags with a path and component. Vue uses a VueRouter instance that is built by an array with routes defined with the properties path and component. The VueRouter instance is one of the main Vue instance creation properties and you also need to define the router-view tag in the template.
+				<i>React</i> and <i>Vue</i> are a bit different in the way they configure their routing. <i>React</i> only needs to define a router tag (&lt;BrowserRouter&gt;, in this case) and all its routes defined in different &lt;Route&gt; tags with a <i>path</i> and <i>component</i> property. <i>Vue</i> uses a <i>VueRouter</i> instance that is built by an array with routes defined with the properties <i>path</i> and <i>component</i>. It's worth to point it out that <i>VueRouter</i> instance is one of the main <i>Vue</i> instance's constructor properties and also that you'll need to define the &lt;router-view&gt; tag in the template.
 			</p>
 		</section>
 		<section>
 			<h2>Transitions/Animations</h2>
 			<p>
-				Its definitely the part I less understand in both apps, but I tried to make it work in the React app the same way it works in the VueJS app and I got close but wasn't able to do the same.
+				This is definitely the part I less understand in both apps, but I tried to make it work in the <i>React</i> app the same way it works in the <i>VueJS</i> app and I got close but wasn't able to do the same. Let's see the implementations:
 				<pre>
 //App.js
 import React, { Component } from 'react';
@@ -515,7 +519,6 @@ class App extends Component {
   }
   render() {
     return (
-    	return (
       &lt;BrowserRouter&gt;
        	//some other tags
       	&lt;CSSTransitionGroup
@@ -566,7 +569,7 @@ class App extends Component {
 }
 
 				</pre>
-				<h5>Transitions configuration in App.js and App.css from React app</h5>
+				<h5>Transitions configuration in App.js and App.css from the React app</h5>
 			</p>
 		 	<p>
 				<pre>
@@ -612,22 +615,20 @@ class App extends Component {
 }
 
 				</pre>
-				<h5>Transitions configuration in App.js and App.css from React app</h5>
+				<h5>Transitions configuration in App.vue and App.css from the Vue app</h5>
 			</p>
 		 	<p>
-
-				In the React application is necessary to include a CSSTransitionGroup tag with timeouts for the events that you want to trigger the animation and also include a Switch tag with a key field that will notify the CSSTransitionGroup that a route changed so that it can perform the animation.
-				Also you need to define the transitionName property to be able to define css classes to perfome the animation. This name will be the prefix of the event CSS class that its used to define how the animation happens.
+				In the <i>React</i> application is necessary to include a &lt;CSSTransitionGroup&gt; tag with timeouts for the events that you want to trigger the animation and also include a &lt;Switch&gt; tag with a <i>key</i> field that will notify the &lt;CSSTransitionGroup&gt; that a route changed, so that it can perform the animation. Also you need to define the <i>transitionName</i> property to be able to define <i>CSS</i> classes to perform the animation. This name will be the prefix for the event <i>CSS</i> class that its used to define how the animation happens.
 			</p>
 		 	<p>
-				This last part is the same for Vue. But you only need to define a transaction tag with name which is the event CSS class.
-				This transition tag has a mode property that enables us to transition when an element leaves and the other enters, which was what I wasn't able to reproduce using CSSTransitionGroup in the React application.
+				This last part is the same for <i>Vue</i>. But you only need to define a &lt;transaction&gt; tag with <i>name</i> which is the prefix event <i>CSS</i> class.
+				This &lt;transition&gt; tag has a <i>mode</i> property that enables us to transitioning when an element leaves and the other enters, which was what I wasn't able to reproduce using &lt;CSSTransitionGroup&gt; in the <i>React</i> application.
 			</p>
 		</section>
 		<section>
 			<h2>Components</h2>
 			<p>
-				Now that we have seen the libraries that were used in these applications, lets look at one of the components.
+				Now that we have seen the libraries used in these applications, lets look at a few of the components implemented in these apps.
 				<pre>
 import React, { Component } from 'react';
 import { NavLink, BrowserRouter } from 'react-router-dom'
@@ -826,21 +827,19 @@ export default Header;
 				<h5>Header.vue from Vue App</h5>
 			</p>
 			<p>
-				These two files are probably the largest components in these applications.
-				We can start comparing them paying attention to the fact that React defines a class that extends Component while Vue only exports a default object with some methods and properties. Also, we can see that we need to inject the main store in the Component so that we can use it like props, this is enabled by Mobx. Another important thing to notice is the observer decorator which is necessary to be able to observe the properties injected.
+				These two files are probably the largest components in these applications. We can start comparing them paying attention to the fact that <i>React</i> defines a class that extends <i>Component</i> while <i>Vue</i> only exports a default object with some methods and properties. Also, we can see that in the <i>React</i> <i>Header.js</i> file we need to inject the main store in the component so that we can use it like <i>props</i>, this is enabled by <i>Mobx</i>. Another important thing to notice is the <i>@observer</i> decorator which is necessary to be able to observe the properties injected.
 			</p>
 			<p>
-				Another thing that calls our attention in the React's Header.js file is seeing that we need to bind all the component methods in the constructor, excluding actions and computed. Which is something that we don't need in the Vue's Header.vue file. In Vue components we can choose to map the getters and actions that we want to use inside the component (as component props) or access them through the $store property.
+				Another thing that calls our attention in the <i>React</i>'s <i>Header.js</i> file is seeing that we need to bind all the component methods in the constructor, excluding actions and computed. Which is something that we don't need in the <i>Vue</i>'s <i>Header.vue</i> file. Also, talking about the way we access actions and getters in <i>Vue</i> components, it is possible to map the getters and actions that we want to use inside the component (as component <i>props</i>) or access them through the <i>$store</i> property.
 			</p>
 			<p>
-				The file organization is also something important to notice, React is totally EcmaScript 
-				(in this app) and uses JSX in the render method to render the component. Vue, in the other hand, prefers to have 3 different blocks: template, script and style. Template is where the component html template is defined, this is what is going to be render; script is the EcmaScript code where we define the vue components properties and methods; and style is where we define de css style for this specific component or for the whole app. However, if you prefer using JSX, VueJS also supports that - we actually use it on the main.js when we defined the render method for the Vue instance.
+				The file organization is also something important to notice, <i>React</i> is totally <i>EcmaScript</i> (in this app) and uses <i>JSX</i> in the <i>render()</i> method to render the component. <i>Vue</i>, in the other hand, prefers to have 3 different tag blocks: &lt;template&gt;, &lt;script&gt; and &lt;style&gt;. &lt;template&gt; is where the component <i>HTML</i> template is defined, this is what is going to be render; &lt;script&gt; is the <i>EcmaScript</i> code where we define the <i>Vue</i> components properties and methods; and &lt;style&gt; is where we define de <i>CSS</i> style for this specific component or for the whole app. It is possible to use <i>JSX</i> in a <i>VueJS</i> and we are actually using it on the <i>main.js</i> file when we defined the <i>render()</i> method for the <i>Vue</i> instance.
 			</p>
 			<p>
-				About the templates, one thing that stands out is that there's a lot of directives (like @click, :class and a others) that bind methods and/or properties with tag fields which enable shorcuts and make it easier to develop - you can see that to make the same thing on React side, I had to create a few computed methods to define some CSS classes to the li wrapping the NavLink tag.
+				About the templates, one thing that stands out is that there's a lot of directives (like <i>@click</i> and <i>:class</i>) that bind methods and/or properties with tag fields. This enables shorcuts and make it easier to develop. If look at the <i>React</i> <i>Header.js</i> file, there's a few computed methods that I had to implement so that we could add 'active' <i>CSS</i> class only in the active &lt;NavLink&gt; tag. On <i>Vue</i> side, I only needed to pass a property <i>activeClassName</i> and the <i>router-link</i> was responsible for knowing when it was active and adding this class.
 			</p>
 			<p>
-				To show one of the facilities provided by Vue JS in using components, I will show the last two code snippets and comment them:
+				To show one of the facilities provided by <i>VueJS</i> in using components, I will show the last two code snippets and comment them:
 			</p>
 			<p>	
 				<pre>
@@ -906,60 +905,59 @@ export default Stocks;
 				<h5>Stocks.vue is one of React's app component</h5>
 			</p>
 			<p>
-				These two files has the purpose of loading all the Stock components using a list of objects.
-				On React side, we need to define a for loop (we could also use FP to do that) and push all elements into a variable that will be rendered by this component also, its necessary to define a key for each element being rendered using this approach.
+				These two files have the purpose of loading all the &lt;Stock&gt; components using a list of objects. On <i>React</i> side, we need to define a <i>for</i> loop (we could also use <i>Functional Programming</i> to do that) and push all elements into a variable that will be rendered by this component. One thing to notice is that you should define a <i>key</i> for each element being rendered using this approach.
 			</p>
 			<p>
-				VueJS makes is fairly easy by providing the v-for directive that is a foreach loop in which for every iteration returns one of the objects in the list and since we pass it as props to the Stock component, it is possible to render all these components with just one line of code.
+				<i>VueJS</i> makes it fairly easy by providing the <i>v-for</i> directive that is a <i>foreach</i> loop in which for every iteration, it returns one of the objects in the list and since we pass it as <i>props</i> to the <i>Stock</i> component, it is possible to render all these components with a single line of code.
 			</p>
 			<p>
-				Both React and VueJS components have a lifecycle that is worth mentioning. I won't explain them (because their names describe what they do), but I would like to at least show their names:
+				Both <i>React</i> and <i>VueJS</i> components have a lifecycle that is worth mentioning. I won't explain them (because their names describe themselves), but I would like to at least show their names:
 			</p>
 			<p>
-			React:
+			<i>React</i>:
 				<ul>
 					<li>Mounting</li>
 						<ul>
-							<li>constructor()</li>
-							<li>componentWillMount()</li>
-							<li>render()</li>
-							<li>componentDidMount()</li>
+							<li><i>constructor()</i></li>
+							<li><i>componentWillMount()</i></li>
+							<li><i>render()</i></li>
+							<li><i>componentDidMount()</i></li>
 						</ul>
 				<li>Updating</li>
 					<ul>
-						<li>componentWillReceiveProps()</li>
-						<li>shouldComponentUpdate()</li>
-						<li>componentWillUpdate()</li>
-						<li>render()</li>
-						<li>componentDidUpdate()</li>
+						<li><i>componentWillReceiveProps()</i></li>
+						<li><i>shouldComponentUpdate()</i></li>
+						<li><i>componentWillUpdate()</i></li>
+						<li><i>render()</i></li>
+						<li><i>componentDidUpdate()</i></li>
 					</ul>
 				<li>Unmounting</li>
 					<ul>
-						<li>componentWillUnmount()</li>
+						<li><i>componentWillUnmount()</i></li>
 					</ul>
 				</ul>
 			For more information: <a href="https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle">React Component Lifecycle</a>
 			</p>
 			<p>
-			VueJS:
+			<i>VueJS</i>:
 				<ul>
 					<li>Mounting</li>
-						<ul>
-							<li>new Vue()</li>
-							<li>beforeCreate()</li>
-							<li>created()</li>
-							<li>beforeMount()</li>
-							<li>mounted()</li>
-						</ul>
+					<ul>
+						<li><i>new Vue()</i></li>
+						<li><i>beforeCreate()</i></li>
+						<li><i>created()</i></li>
+						<li><i>beforeMount()</i></li>
+						<li><i>mounted()</i></li>
+					</ul>
 					<li>Update</li>
-						<ul>
-							<li>beforeUpdate()</li>
-							<li>updated()</li>
-						</ul>
+					<ul>
+						<li><i>beforeUpdate()</i></li>
+						<li><i>updated()</i></li>
+					</ul>
 					<li>Unmounting</li>
-						<ul>
-						<li>beforeDestroy()</li>
-						<li>destroyed()</li>
+					<ul>
+						<li><i>beforeDestroy()</i></li>
+						<li><i>destroyed()</i></li>
 					</ul>
 				</ul>
 			For more information: <a href="https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks">Vue Instance Lifecycle</a>
@@ -968,31 +966,32 @@ export default Stocks;
 		<section>
 			<h2>Conclusion</h2>
 			<p>
-				When I started thinking about writing this article I was amazed by how VueJS was simple and was totally biased to it, because I had worked for quite sometime and I really loved it but using Redux was always painful because it was hard to track where everything comes from. When I was implementing the React app and found Mobx, I was amazed with the possibilities in developing a React app with all of this facilities provided by Mobx - quick note: I actually developed it using Redux and changed to Mobx.
+				When I started thinking about writing this article I was amazed by how <i>VueJS</i> was simple and was totally biased to it. I had worked for quite sometime with <i>React</i> and I really love it, but using <i>Redux</i> was always painful because it was hard to track where everything comes from. When I was implementing the <i>React</i> app and found <i>Mobx</i>, I was so amazed with the possibilities in developing a <i>React</i> app with all of this facilities provided by <i>Mobx</i> that it made me translate almost the whole app that was using <i>Redux</i> to make it use <i>Mobx</i>.
 			</p>
 			<p>
-				If I were to chose Vuex or Mobx, I think I would prefer Mobx, because even though is more verbose, I think its pretty clear which stores are you touching when you call a store action or its state objects (observables).
+				If I were to chose <i>Vuex</i> or <i>Mobx</i>, I think I would prefer <i>Mobx</i>, because even though is more verbose, I think its pretty clear which stores are you touching when you call a store action or its state objects (<i>@observables</i>). But, unfortunatelly I haven't found yet a way to use <i>Mobx</i> in <i>VueJS</i> application the same way that is possible in <i>React</i> - there are some <i>vue-mobx</i> libraries, but they are not the same and are not as clear as <i>react-mobx</i>.
 			</p>
 			<p>
-				Unfortunatelly I haven't found yet a way to use Mobx in Vue application the same way that is possible in React - there are some vue-mobx libraries, but they are not the same and are not as clear as react-mobx.
+				When the topic is <i>HTTP Request</i> I'm fine with both libraries, <i>Axios</i> and <i>VueResource</i> work as expected and provide a easy way of using <i>HTTP</i> methods with promises. I think <i>VueResource</i> has one advantage that is being totally integrated with <i>Vue</i> and because of that you have direct access to it by using the <i>Vue</i> instance.  While when using <i>Axios</i> I had to create an object with a defined configuration and import it in every file that I needed (there might be a better option, but it wasn't clear to me).
 			</p>
 			<p>
-				When the topic is HTTP Request I'm fine with both libraries, axios and VueResource work as expected and provide a easy way of using HTTP methods with promises. I think VueResource has one advantage that is being totally integrated with Vue and because of that you have direct access to in by using the Vue instance.  While when using axios I had to create an object with a defined configuration and import it in every file that I needed (there might be better option, but it wasn't clear to me).
+				Routing is one point that I really would not be able to choose just following these two applications. On <i>React</i> side we have too little configuration steps necessary to make it work and if you are not thinking about animations, looks like is very easy to deal with. On the other hand, <i>Vue</i> requires more configuration steps and if you care about animations it might be a better fit. However, since I have been using <i>VueJS</i> in a company project, I've seen that the <i>VueRouter</i> and its easy integration with the <i>Vue</i> instance enables us to easy manage routes inside components (like acessing route properties and handle parameters passed between two routes). That being said, I think <i>VueRouter</i> is way more flexible and can be a better fit.
 			</p>
 			<p>
-				Routing is one point that I really would not be able to choose just following these two applications. In React side we have too little configuration steps necessary to make it work, but if you are not thinking about animations, looks like is very easy to deal with. In the other hand, Vue requires more configuration steps and if you think about using animations it might be a better fit. However, since I have been using VueJS in a company project, I've seen that the VueRouter and its easy integration with the Vue instance enables us to easy manage routes inside components (like acessing route properties and handle parameters passed between two routes). That being said, I think VueRouter is way more flexible and can be a better fit.
+				About transitions I think it was pretty clear so far that <i>Vue</i> has a better way of handling it since it has more possibilities in configuration to provide smoother transition between components. Just to point it out, is still possible to handle transations using both frameworks/libraries lifecycle if you prefer this option (I didn't because it looked like a lot of trouble just to improve the animation I already had).
 			</p>
 			<p>
-				Transitions I think it was pretty clear so far that Vue has a better way of handling it, it has more possibilities in configuration to provide smoother transition between components. Just to point it out, is still possible to handle transations using both frameworks/libraries lifecycle if you prefer this option.
+				Finally, when the subject is components, everything becomes tricky for me. I find the readability of <i>React</i> better, it might be because I've more experience with it or because I saw it first and got really used to it. I also like using <i>JSX</i> and defining methods without having to create a <i>methods</i> property for it. Besides, I prefer to look into a <i>JavaScript</i> file that is basically a <i>EcmaScript</i> code with a single method that has <i>HTML</i> like tags (<i>JSX</i>) rather than seeing a file that has 3 different <i>HTML</i> like tags that differentiate <i>HTML</i> like code, <i>EcmaScript</i> code and styling code.
+				On the other hand, even though <i>Vue</i>'s components are not as readable as <i>React</i>'s, by using <i>Vue</i>'s directives and other shortcuts you'll need to write less code to build stuff and that's why I think <i>Vue</i> has the advantage here. On the subject of <i>HTML</i> like tags organization of the file, we could still divide it into 3 different files and import them inside the tags (&lt;template&gt;, &lt;script&gt; and &lt;style&gt;).
+
 			</p>
 			<p>
-				Finally, when the subject is Components is where everything becomes tricky for me. I find the readability of React better. It might be because I've more experience with it or because I saw it first and got really used to it.
-				I like using JSX and defining methods without need to create a methods property for it. Also, I prefer to look into a JavaScript file that is basically a EcmaScript code with a single method that has HTML like tags (JSX) rather than seeing a file that has 3 different HTML like tags that differentiate HTML like code, EcmaScript code and styling code.
-				On the other hand, even though Vue's components are not as readable as React's, by using Vue's directives and other shortcut you need to write less code to build stuff and on the HTML like tags organization of the file, we could still divide it into 3 different files and import them inside the tags (template, script and style).
+				In conclusion, I think both frameworks/libraries are great and they provide an easy way of building front end applications but if I were to choose - and I actually did in this current company project that I've mentioned -, my choice would be <i>Vue</i>. The reason is that I trully believe that it has the most potention for growing and becoming the most used <i>JavaScript</i> library/framework for its purpose. If you are familiar with <i>Angular</i>, you probably notice that <i>VueJS</i> got some cool stuff from <i>Angular</i> and <i>React</i> to merge them into this fine solution that you've seen in this article.
 			</p>
-			<p>
-				In conclusion, I think both frameworks/libraries are great and they provide an easy way of building front-end application but if I would have to choose (and I actually did in this current company project that I've mentioned), my choice would be Vue. The reason for that is the I trully believe that it has the most potention for growing and become the most used JavaScript library/framework for its purpose. If you are familiar with Angular, you probably notice that VueJS got some cool stuff from React and Angular and merge them into this fine solution that you've seen in this article.
-			</p>
+		</section>
+		<section>
+			<h4>Author</h4>
+			<i>Fernando Tavares is a fullstack developer at Avenue Code and has been working with development for the past 4 years. The first two years of this time, he was focused on back end development using the Java Platform but for the past two years he has tried to learn more about the front end world and, since he discovered EcmaScript 5 and 6, every new thing learned about it has become a new passion.</i>
 		</section>
 		
 	</body>
